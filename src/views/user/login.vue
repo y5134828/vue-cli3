@@ -39,14 +39,14 @@ export default {
       this.$store
         .dispatch('Login', this.form)
         .then(res => {
-          this.$router.push('/index')
+          this.$router.push('/index');
         })
         .catch(err => {
-          console.log(err)
-        })
+          console.log(err);
+        });
     }
   }
-}
+};
 </script>
 
 <style lang="scss">

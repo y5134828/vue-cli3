@@ -1,5 +1,5 @@
 function load (component) {
-  return resolve => require([`../views/${component}`], resolve)
+  return resolve => require([`../views/${component}`], resolve);
 }
 
 const routes = [
@@ -25,5 +25,5 @@ const routes = [
       path: '/'
     }
   }
-]
-export default routes
+];
+export default routes;

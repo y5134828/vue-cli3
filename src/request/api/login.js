@@ -1,11 +1,11 @@
-import request from '@/request/request'
+import request from '@/request/request';
 
 export function login (data) {
   return request({
     url: '/user/auth',
     method: 'post',
     data: data
-  })
+  });
 }
 
 export function sebdCode (data) {
@@ -13,7 +13,7 @@ export function sebdCode (data) {
     url: '/adminsend',
     method: 'post',
     data: data
-  })
+  });
 }
 
 export function getInfo () {
@@ -21,14 +21,14 @@ export function getInfo () {
     url: '/map',
     method: 'post',
     data: { '': '' }
-  })
+  });
 }
 
 export function logout () {
   return request({
     url: '/user/logout',
     method: 'post'
-  })
+  });
 }
 
 export function passwordChange (data) {
@@ -36,5 +36,5 @@ export function passwordChange (data) {
     url: '/password/change',
     method: 'post',
     data: data
-  })
+  });
 }

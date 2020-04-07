@@ -1,6 +1,6 @@
-import { login } from '@/request/api/login'
-import { getToken, setToken, removeToken } from '@/utils/cookie'
-import { Message } from 'element-ui'
+import { login } from '@/request/api/login';
+import { getToken, setToken, removeToken } from '@/utils/cookie';
+import { Message } from 'element-ui';
 
 const user = {
   state: {
@@ -10,10 +10,10 @@ const user = {
 
   mutations: {
     SET_TOKEN: (state, token) => {
-      state.token = token
+      state.token = token;
     },
     SET_NAME: (state, name) => {
-      state.name = name
+      state.name = name;
     }
   },
 
@@ -23,44 +23,43 @@ const user = {
       // const username = userInfo.username.trim()
       return new Promise((resolve, reject) => {
         login(JSON.stringify(userInfo)).then(response => {
-          debugger
           if (response.code !== 'SUCCESS') {
             Message({
               showClose: true,
               message: response.msg
-            })
-            reject(response)
+            });
+            reject(response);
           } else {
-            setToken(response.data.token)
-            commit('SET_TOKEN', response.data.token)
-            commit('SET_NAME', response.data.name)
-            resolve()
+            setToken(response.data.token);
+            commit('SET_TOKEN', response.data.token);
+            commit('SET_NAME', response.data.name);
+            resolve();
           }
         }).catch(error => {
-          reject(error)
-        })
-      })
+          reject(error);
+        });
+      });
     },
 
     // 登出
     LogOut ({ commit, state }) {
       return new Promise((resolve, reject) => {
-        commit('SET_TOKEN', '')
-        commit('SET_ROLES', [])
-        removeToken()
-        resolve()
-      })
+        commit('SET_TOKEN', '');
+        commit('SET_ROLES', []);
+        removeToken();
+        resolve();
+      });
     },
 
     // 前端 登出
     FedLogOut ({ commit }) {
       return new Promise(resolve => {
-        commit('SET_TOKEN', '')
-        removeToken()
-        resolve()
-      })
+        commit('SET_TOKEN', '');
+        removeToken();
+        resolve();
+      });
     }
   }
-}
+};
 
-export default user
+export default user;

@@ -10,10 +10,15 @@ export default {
   name: 'home',
   data () {
     return {
-      username: this.$store.state.user.userName
+
+    };
+  },
+  computed: {
+    username: function () {
+      return this.$store.state.user.userName;
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

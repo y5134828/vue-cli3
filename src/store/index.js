@@ -1,9 +1,9 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import user from './module/user'
+import Vue from 'vue';
+import Vuex from 'vuex';
+import user from './module/user';
 
-Vue.use(Vuex)
-const debug = process.env.NODE_ENV !== 'production'
+Vue.use(Vuex);
+const debug = process.env.NODE_ENV !== 'production';
 
 const store = new Vuex.Store({
   strict: debug,
@@ -15,7 +15,7 @@ const store = new Vuex.Store({
   },
   mutations: {
     SET_TIP (state, data) {
-      state.tip = data
+      state.tip = data;
     }
   },
   actions: {
@@ -24,6 +24,6 @@ const store = new Vuex.Store({
   modules: {
     user
   }
-})
+});
 
-export default store
+export default store;
