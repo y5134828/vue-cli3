@@ -2,13 +2,13 @@ import request from '@/request/request';
 
 export function login (data) {
   return request({
-    url: '/user/auth',
+    url: '/user/login',
     method: 'post',
     data: data
   });
 }
 
-export function sebdCode (data) {
+export function sendSmsCode (data) {
   return request({
     url: '/adminsend',
     method: 'post',
@@ -18,7 +18,7 @@ export function sebdCode (data) {
 
 export function getInfo () {
   return request({
-    url: '/map',
+    url: '/user/info',
     method: 'post',
     data: { '': '' }
   });

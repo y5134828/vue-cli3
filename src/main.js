@@ -2,7 +2,6 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router/index';
 import store from './store/index';
-import mixins from './mixins/index'; // 全局混入
 import 'element-ui/lib/theme-chalk/index.css'; // ele整体样式
 import 'css/base/element_theme.scss'; // ele主题样式
 import 'assets/css/base/base.scss'; // 基础样式
@@ -17,7 +16,6 @@ import ElementUI from 'element-ui'; // 全局引入ele
 Vue.config.productionTip = false;
 
 Vue.use(ElementUI);
-Vue.mixin(mixins);
 
 new Vue({
   router,

@@ -1,11 +1,14 @@
 <template>
   <div class="p-wrap">
-    <p>登录账号：{{username}}</p>
-    <el-button type="primary" >退出登录</el-button>
+    <p>登录账号：{{userInfo.name}}</p>
+    <el-button type="primary" @click="logout">退出登录</el-button>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
+import { Message } from 'element-ui';
+
 export default {
   name: 'home',
   data () {
@@ -13,11 +16,19 @@ export default {
 
     };
   },
-  computed: {
-    username: function () {
-      return this.$store.state.user.userName;
+  computed: mapState({
+    userInfo: state => state.user.userInfo
+  }),
+  methods: {
+    logout: function () {
+      this.$store.dispatch('userLogOut').then(res => {
+        location.reload() // 为了重新实例化vue-router对象 避免bug
+      }).catch(err => {
+        Message.error(err || '退出失败，请重试');
+      })
     }
   }
+
 };
 </script>
 

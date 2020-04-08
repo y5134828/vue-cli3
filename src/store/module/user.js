@@ -1,38 +1,38 @@
-import { login } from '@/request/api/login';
+import { login, getInfo } from '@/request/api/login';
 import { getToken, setToken, removeToken } from '@/utils/cookie';
 import { Message } from 'element-ui';
 
 const user = {
   state: {
     token: getToken(),
-    userName: '123'
+    userInfo: {}
   },
 
   mutations: {
-    SET_TOKEN: (state, token) => {
+    set_token: (state, token) => {
       state.token = token;
     },
-    SET_NAME: (state, name) => {
-      state.name = name;
+    set_userInfo: (state, userInfo) => {
+      state.userInfo = userInfo;
     }
   },
 
   actions: {
     // 登录
-    Login ({ commit }, userInfo) {
-      // const username = userInfo.username.trim()
+    userLogin ({ commit }, loginInfo) {
       return new Promise((resolve, reject) => {
-        login(JSON.stringify(userInfo)).then(response => {
-          if (response.code !== 'SUCCESS') {
+        login(JSON.stringify(loginInfo)).then(res => {
+          if (res.code !== 1) {
             Message({
               showClose: true,
-              message: response.msg
+              message: res.msg
             });
-            reject(response);
+            reject(res);
           } else {
-            setToken(response.data.token);
-            commit('SET_TOKEN', response.data.token);
-            commit('SET_NAME', response.data.name);
+            setToken(res.data.token);
+            debugger
+            commit('set_token', res.data.token);
+            commit('set_userInfo', res.data.userInfo);
             resolve();
           }
         }).catch(error => {
@@ -41,24 +41,33 @@ const user = {
       });
     },
 
-    // 登出
-    LogOut ({ commit, state }) {
+    // 用户信息
+    getUserInfo ({ commit }) {
       return new Promise((resolve, reject) => {
-        commit('SET_TOKEN', '');
-        commit('SET_ROLES', []);
-        removeToken();
-        resolve();
+        getInfo().then(res => {
+          
+          if (res.code === 1) {
+            commit('set_userInfo', res.data.userInfo);
+            resolve();
+          } else {
+            reject(res.msg);
+          }
+        }).catch(err => {
+          reject(err);
+        });
       });
     },
 
-    // 前端 登出
-    FedLogOut ({ commit }) {
-      return new Promise(resolve => {
-        commit('SET_TOKEN', '');
+    // 登出
+    userLogOut ({ commit, state }) {
+      return new Promise((resolve, reject) => {
+        commit('set_token', '');
+        commit('set_userInfo', {});
         removeToken();
         resolve();
       });
     }
+
   }
 };
 

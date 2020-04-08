@@ -56,8 +56,8 @@ module.exports = {
     hotOnly: false,
     open: true, // 配置自动启动浏览器
     proxy: { // 配置多个代理(配置一个 proxy: 'http://localhost:4000' )
-      '/api': {
-        target: 'https://www.easy-mock.com/mock/5d5df08548f3560f6670d9dc/bufanapp',
+      '/api/': {
+        target: ' https://www.easy-mock.com/mock/5d79e2ffcca0db35d8c3a9b7/basic',
         ws: true,
         changeOrigin: true,
         pathRewrite: {

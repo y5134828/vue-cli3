@@ -9,12 +9,10 @@
     <el-form ref="form" :model="form" class="uinn-lr15">
       <el-form-item>
         <el-input placeholder="请输入手机号" v-model="form.mobile">
-          <template slot="prepend">Http://</template>
         </el-input>
       </el-form-item>
       <el-form-item>
         <el-input placeholder="请输入密码" v-model="form.password">
-          <template slot="prepend">Http://</template>
         </el-input>
       </el-form-item>
       <el-form-item>
@@ -36,14 +34,11 @@ export default {
   },
   methods: {
     onSubmit () {
-      this.$store
-        .dispatch('Login', this.form)
-        .then(res => {
-          this.$router.push('/index');
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      this.$store.dispatch('userLogin', this.form).then(res => {
+        this.$router.push('/index');
+      }).catch(err => {
+        console.log(err);
+      });
     }
   }
 };

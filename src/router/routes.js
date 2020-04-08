@@ -16,7 +16,7 @@ const routes = [
     name: 'login',
     component: load('user/login'),
     meta: {
-      title: '首页'
+      title: '用户登录'
     }
   },
   {
