@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { getSessionStorage } from '../utils/cookie';
 import { Message } from 'element-ui';
 
 export default {
@@ -16,9 +16,11 @@ export default {
 
     };
   },
-  computed: mapState({
-    userInfo: state => state.user.userInfo
-  }),
+  computed: {
+    userInfo: function () {
+      return JSON.parse(getSessionStorage('userInfo'));
+    }
+  },
   methods: {
     logout: function () {
       this.$store.dispatch('userLogOut').then(res => {

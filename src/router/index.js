@@ -3,7 +3,7 @@ import Router from 'vue-router';
 import routes from './routes';
 import store from '../store';
 import { Message } from 'element-ui';
-import { getToken } from '@/utils/cookie'; // getToken from cookie
+import { getToken, getSessionStorage } from '@/utils/cookie'; // getToken from cookie
 
 Vue.use(Router);
 
@@ -30,7 +30,7 @@ router.beforeEach((to, from, next) => {
     if (whiteList.indexOf(to.path) !== -1) {
       next({ path: '/' });
     } else {
-      if (store.state.user.userInfo) {
+      if (getSessionStorage('userInfo') == null) {
         store.dispatch('getUserInfo').then(res => {
           next({ ...to });
         }).catch(res => {

@@ -1,5 +1,5 @@
 import { login, getInfo } from '@/request/api/login';
-import { getToken, setToken, removeToken } from '@/utils/cookie';
+import { getToken, setToken, removeToken, setSessionStorage, removeSessionStorage } from '@/utils/cookie';
 import { Message } from 'element-ui';
 
 const user = {
@@ -32,7 +32,7 @@ const user = {
             setToken(res.data.token);
             debugger
             commit('set_token', res.data.token);
-            commit('set_userInfo', res.data.userInfo);
+            setSessionStorage('userInfo', JSON.stringify(res.data.userInfo));
             resolve();
           }
         }).catch(error => {
@@ -45,9 +45,8 @@ const user = {
     getUserInfo ({ commit }) {
       return new Promise((resolve, reject) => {
         getInfo().then(res => {
-          
           if (res.code === 1) {
-            commit('set_userInfo', res.data.userInfo);
+            setSessionStorage('userInfo', JSON.stringify(res.data.userInfo));
             resolve();
           } else {
             reject(res.msg);
@@ -62,8 +61,8 @@ const user = {
     userLogOut ({ commit, state }) {
       return new Promise((resolve, reject) => {
         commit('set_token', '');
-        commit('set_userInfo', {});
         removeToken();
+        removeSessionStorage('userInfo');
         resolve();
       });
     }
