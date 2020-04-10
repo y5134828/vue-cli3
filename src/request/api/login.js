@@ -10,7 +10,7 @@ export function login (data) {
 
 export function sendSmsCode (data) {
   return request({
-    url: '/adminsend',
+    url: '/user/loginSms',
     method: 'post',
     data: data
   });
