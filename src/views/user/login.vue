@@ -196,6 +196,10 @@ $light_gray:#eee;
     .login-btn-item{
       border: none;
       margin-top: 30px;
+      .login-btn{
+        height: 47px;
+        font-size: 16px;
+      }
     }
   }
   .tips {
