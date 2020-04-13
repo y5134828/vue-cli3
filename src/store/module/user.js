@@ -22,6 +22,7 @@ const user = {
     userLogin ({ commit }, loginInfo) {
       return new Promise((resolve, reject) => {
         login(JSON.stringify(loginInfo)).then(res => {
+          console.log(res);
           if (res.code !== 1) {
             Message({
               showClose: true,

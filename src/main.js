@@ -16,6 +16,7 @@ import ElementUI from 'element-ui'; // 全局引入ele
 Vue.config.productionTip = false;
 
 Vue.use(ElementUI);
+process.env.VUE_APP_MOCK && require('@/mock/mock');// 在测试中使用Mockjs
 
 new Vue({
   router,
